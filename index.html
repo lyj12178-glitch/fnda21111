@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHINSEGAE LUGGAGE PASS | 쇼핑은 더 많이, 짐은 더 가볍게</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            shinsegae: {
+              green: '#0b3b2c',
+              darkgreen: '#06251c',
+              lightgreen: '#145c46',
+              accent: '#d4af37',
+              gold: '#c5a059',
+              goldlight: '#f7f2e7',
+              burgundy: '#6d1b24',
+              burgundylight: '#8e2733',
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'Noto Serif KR', 'serif'],
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    body {
+      font-family: 'Pretendard', -apple-system, sans-serif;
+      scroll-behavior: smooth;
+    }
+    .serif-title {
+      font-family: 'Cinzel', 'Noto Serif KR', serif;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .dark-glass {
+      background: rgba(11, 59, 44, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #c5a059 0%, #ecd599 50%, #b38b40 100%);
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #d4af37 0%, #f6e27a 50%, #b8860b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-shinsegae-burgundy selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-shinsegae-darkgreen text-shinsegae-gold text-xs py-2 px-4 border-b border-shinsegae-lightgreen/30">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center bg-shinsegae-burgundy text-white text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider uppercase">NEW LAUNCH</span>
+        <span>신세계백화점 외국인 맞춤형 핸즈프리 쇼핑 솔루션 ‘LUGGAGE PASS’ 오픈</span>
+      </div>
+      <div class="flex items-center space-x-4 text-stone-300">
+        <span class="flex items-center gap-1"><i data-lucide="plane-takeoff" class="w-3.5 h-3.5 text-shinsegae-accent"></i> Shop More, Carry Less</span>
+        <div class="flex gap-2 text-[11px] font-medium border-l border-stone-600 pl-3">
+          <button onclick="setLang('KR')" class="text-white hover:text-shinsegae-accent font-bold" id="btn-kr">KR</button>
+          <span>|</span>
+          <button onclick="setLang('EN')" class="hover:text-shinsegae-accent" id="btn-en">EN</button>
+          <span>|</span>
+          <button onclick="setLang('CN')" class="hover:text-shinsegae-accent" id="btn-cn">中文</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-200 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div class="cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          <span class="block tracking-[0.22em] text-xs font-serif font-bold text-stone-500">SHINSEGAE</span>
+          <span class="font-serif font-extrabold text-2xl tracking-wider text-shinsegae-green flex items-center gap-1">
+            LUGGAGE PASS <span class="w-1.5 h-1.5 rounded-full bg-shinsegae-burgundy"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-700">
+        <a href="#about" class="hover:text-shinsegae-green transition-colors">서비스 소개</a>
+        <a href="#hero-shorts" class="hover:text-shinsegae-green transition-colors font-bold text-shinsegae-burgundy flex items-center gap-1"><i data-lucide="play-circle" class="w-4 h-4"></i> 쇼츠 영상</a>
+        <a href="#core-features" class="hover:text-shinsegae-green transition-colors">4대 핵심 기능</a>
+        <a href="#process" class="hover:text-shinsegae-green transition-colors">이용 프로세스</a>
+        <a href="#passes" class="hover:text-shinsegae-green transition-colors">패스 종류 & 요금</a>
+        <a href="#campaign-assets" class="hover:text-shinsegae-green transition-colors">홍보물(카드뉴스/쇼츠)</a>
+        <a href="#strategy" class="text-xs uppercase px-2.5 py-1 rounded bg-stone-100 text-shinsegae-burgundy font-bold border border-shinsegae-burgundy/20 hover:bg-shinsegae-burgundy hover:text-white transition-all">기획서 브리프</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <button onclick="openBookingModal()" class="relative inline-flex items-center justify-center px-6 py-2.5 overflow-hidden text-xs md:text-sm font-semibold tracking-wider text-white transition-all duration-300 bg-shinsegae-burgundy rounded-full shadow-md hover:bg-shinsegae-burgundylight hover:scale-105 active:scale-95 group">
+          <span class="flex items-center gap-2">
+            <i data-lucide="ticket" class="w-4 h-4"></i> 지금 패스 예약하기
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[85vh] flex items-center justify-center bg-stone-900 overflow-hidden">
+    <!-- Background Image with Gradient Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=2000&auto=format&fit=crop" 
+           alt="Incheon Airport Department Store Luggage Travel" 
+           class="w-full h-full object-cover object-center filter brightness-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]" />
+      <div class="absolute inset-0 bg-gradient-to-t from-shinsegae-darkgreen via-shinsegae-darkgreen/75 to-transparent"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-stone-950/60 to-stone-950"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-20 text-center text-white">
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-shinsegae-accent/40 mb-6 text-shinsegae-accent text-xs tracking-widest font-semibold uppercase animate-fade-in">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> All-in-One Hands-Free Shopping Solution
+      </div>
+
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-light text-stone-200 tracking-wide mb-3">
+        쇼핑은 더 많이, 짐은 더 가볍게
+      </h2>
+
+      <h1 class="serif-title text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6">
+        LUGGAGE PASS <span class="inline-block text-shinsegae-accent transform -rotate-12">✈</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-stone-200 font-normal leading-relaxed mb-10">
+        “사고, 들고 다니지 마세요. 신세계가 대신해 드립니다.”<br/>
+        결제부터 매장 집결, 공항 직송 배송까지 — 패스 한 장으로 두 손 자유로운 서울 쇼핑을 완성하세요.
+      </p>
+
+      <!-- Key Value Badges -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto mb-10 text-left">
+        <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-shinsegae-green/80 text-shinsegae-accent"><i data-lucide="credit-card" class="w-5 h-5"></i></div>
+          <div>
+            <div class="text-[11px] text-stone-300 font-medium">STEP 1</div>
+            <div class="text-sm font-bold">PAY 간편 결제</div>
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-shinsegae-green/80 text-shinsegae-accent"><i data-lucide="shopping-bag" class="w-5 h-5"></i></div>
+          <div>
+            <div class="text-[11px] text-stone-300 font-medium">STEP 2</div>
+            <div class="text-sm font-bold">COLLECT 자동 집결</div>
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-shinsegae-green/80 text-shinsegae-accent"><i data-lucide="truck" class="w-5 h-5"></i></div>
+          <div>
+            <div class="text-[11px] text-stone-300 font-medium">STEP 3</div>
+            <div class="text-sm font-bold">DELIVER 공항 직송</div>
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-3">
+          <div class="p-2 rounded-lg bg-shinsegae-green/80 text-shinsegae-accent"><i data-lucide="gem" class="w-5 h-5"></i></div>
+          <div>
+            <div class="text-[11px] text-stone-300 font-medium">SPECIAL</div>
+            <div class="text-sm font-bold">VIP 멤버십 혜택</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-shinsegae-burgundy hover:bg-shinsegae-burgundylight text-white font-semibold text-base shadow-xl flex items-center justify-center gap-2 transform hover:-translate-y-0.5 transition-all">
+          <i data-lucide="plane" class="w-5 h-5 text-shinsegae-accent"></i> 지금 LUGGAGE PASS 예약하기
+        </button>
+        <a href="#painpoint" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-medium text-base backdrop-blur-md border border-white/30 flex items-center justify-center gap-2 transition-all">
+          페인포인트 & 솔루션 보기 <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="mt-14 pt-8 border-t border-white/15 grid grid-cols-3 gap-6 max-w-2xl mx-auto text-center">
+        <div>
+          <span class="block text-2xl md:text-3xl font-bold text-shinsegae-accent">0 kg</span>
+          <span class="text-xs text-stone-300">손에 쥐는 짐 무게</span>
+        </div>
+        <div>
+          <span class="block text-2xl md:text-3xl font-bold text-white">5.5 시간</span>
+          <span class="text-xs text-stone-300">쇼핑 체류시간 확대</span>
+        </div>
+        <div>
+          <span class="block text-2xl md:text-3xl font-bold text-shinsegae-accent">92 %</span>
+          <span class="text-xs text-stone-300">고객 재방문 의향</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9:16 Official Shorts Video Showcase Section -->
+  <section id="hero-shorts" class="py-20 bg-stone-950 text-white relative overflow-hidden border-b border-stone-800">
+    <!-- Ambient Background Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-shinsegae-green/20 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-shinsegae-burgundy/20 border border-shinsegae-burgundy/40 text-shinsegae-accent text-xs font-semibold uppercase tracking-wider mb-3">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 9:16 Vertical Viral Campaign
+        </div>
+        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          영상완성본 <span class="text-shinsegae-accent font-light text-2xl">| 50초 쇼츠</span>
+        </h2>
+        <p class="text-stone-300 text-sm mt-3 leading-relaxed">
+          “쇼핑백은 늘어나고 지쳐가는 칭칭, 신세계 LUGGAGE PASS를 만나 두 손 가벼운 여행으로 대역전!”
+        </p>
+      </div>
+
+      <!-- Shorts Player Layout -->
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-14 max-w-5xl mx-auto">
+        
+        <!-- 9:16 Smartphone Mockup Video Frame -->
+        <div class="relative w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] bg-stone-900 rounded-[40px] p-3.5 shadow-2xl shadow-emerald-950/40 border-4 border-stone-700 ring-1 ring-white/10 flex flex-col justify-between overflow-hidden">
+          
+          <!-- Smartphone Speaker / Notch -->
+          <div class="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-4 bg-stone-950 rounded-full z-30 flex items-center justify-center">
+            <span class="w-3 h-3 rounded-full bg-stone-800 inline-block mr-2"></span>
+            <span class="w-8 h-1 bg-stone-800 rounded-full inline-block"></span>
+          </div>
+
+          <!-- Video Wrapper -->
+          <div class="relative w-full h-full rounded-[30px] overflow-hidden bg-black flex items-center justify-center group">
+            
+            <!-- Video Element (Tries local '영상완성본.mp4', fallback provided) -->
+            <video id="shortsVideo" 
+                   class="w-full h-full object-cover" 
+                   playsinline 
+                   loop 
+                   preload="metadata"
+                   poster="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=1000&auto=format&fit=crop">
+              <source src="영상완성본.mp4" type="video/mp4">
+              <source src="./영상완성본.mp4" type="video/mp4">
+              <!-- Fallback guidance if file isn't uploaded locally yet -->
+              해당 브라우저가 비디오 태그를 지원하지 않거나 ‘영상완성본.mp4’ 파일을 불러올 수 없습니다.
+            </video>
+
+            <!-- Video Overlay UI (TikTok / Reels Style) -->
+            <div id="videoControlsOverlay" class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80 flex flex-col justify-between p-5 pointer-events-none transition-opacity duration-300">
+              
+              <!-- Top Info Bar -->
+              <div class="pt-4 flex justify-between items-center text-xs">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md text-white font-medium border border-white/20">
+                  <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> SHINSEGAE SHORTS
+                </span>
+                <span class="text-stone-300 font-mono text-[11px] bg-black/40 px-2 py-0.5 rounded">0:50</span>
+              </div>
+
+              <!-- Center Big Play Button (shown when paused) -->
+              <div id="centerPlayBtn" class="pointer-events-auto self-center cursor-pointer transition-transform transform hover:scale-110 active:scale-95">
+                <div class="w-16 h-16 rounded-full bg-shinsegae-burgundy/90 text-white flex items-center justify-center shadow-xl border border-shinsegae-accent/40 backdrop-blur-sm">
+                  <i data-lucide="play" class="w-8 h-8 ml-1 fill-white"></i>
+                </div>
+              </div>
+
+              <!-- Bottom Info & Captions -->
+              <div class="space-y-2 pointer-events-auto">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-shinsegae-gold flex items-center justify-center font-bold text-stone-900 text-xs">
+                    S
+                  </div>
+                  <span class="text-xs font-bold text-white drop-shadow">@shinsegae_official</span>
+                </div>
+                
+                <p class="text-xs text-stone-200 line-clamp-2 leading-relaxed drop-shadow">
+                  칭칭의 서울 여행이 가벼워진 이유! 짐은 백화점이, 쇼핑은 자유롭게 ✨ #LUGGAGEPASS #신세계백화점 #HandsFree
+                </p>
+
+                <!-- Audio Track Tag -->
+                <div class="flex items-center gap-1.5 text-[10px] text-stone-300">
+                  <i data-lucide="music" class="w-3 h-3 animate-spin"></i>
+                  <span>Original Audio - Shinsegae Luggage Pass BGM</span>
+                </div>
+
+                <!-- Custom Mini Control Bar -->
+                <div class="pt-2 flex items-center justify-between text-white border-t border-white/20">
+                  <button id="togglePlayBtn" class="flex items-center gap-1 text-[11px] hover:text-shinsegae-accent">
+                    <i data-lucide="play" id="playIconSmall" class="w-4 h-4"></i> 재생
+                  </button>
+                  <button id="toggleMuteBtn" class="flex items-center gap-1 text-[11px] hover:text-shinsegae-accent">
+                    <i data-lucide="volume-2" id="volumeIcon" class="w-4 h-4"></i> 음소거 해제
+                  </button>
+                  <button onclick="toggleShortsFullScreen()" class="flex items-center gap-1 text-[11px] hover:text-shinsegae-accent">
+                    <i data-lucide="maximize" class="w-4 h-4"></i> 전체화면
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Side: Video Context & Highlights Breakdown -->
+        <div class="w-full lg:w-1/2 space-y-6">
+          
+          <div class="bg-stone-900/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-stone-800 shadow-xl space-y-5">
+            <div class="flex items-center justify-between border-b border-stone-800 pb-4">
+              <div>
+                <span class="text-xs font-bold text-shinsegae-accent uppercase tracking-wider">Campaign Video File</span>
+                <h3 class="text-xl font-bold text-white mt-0.5">‘영상완성본’ 핵심 연출 포인트</h3>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold font-mono">
+                9:16 FHD • 50s
+              </span>
+            </div>
+
+            <!-- 3 Scene Summaries -->
+            <div class="space-y-3.5 text-xs text-stone-300">
+              <div class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="px-2 py-0.5 rounded bg-red-950 text-red-300 font-bold font-mono text-[10px] mt-0.5">0:00~0:15</span>
+                <div>
+                  <strong class="text-white block mb-0.5">페르소나 칭칭의 페인포인트 극대화</strong>
+                  양손 가득 무거운 쇼핑백과 캐리어를 끌며 지쳐가는 칭칭의 모습을 5초 후크로 배치해 시청 이탈 방지
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-bold font-mono text-[10px] mt-0.5">0:15~0:27</span>
+                <div>
+                  <strong class="text-white block mb-0.5">웰컴센터 솔루션 반전 (PAY & COLLECT)</strong>
+                  "찾았다 러기지패스!" 캐리어를 맡기고 패스 하나로 매장에서 스마트 결제 및 자동 집결 시작
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 font-bold font-mono text-[10px] mt-0.5">0:27~0:50</span>
+                <div>
+                  <strong class="text-white block mb-0.5">공항 데스크 원스톱 픽업 & 해피엔딩</strong>
+                  인천/김포공항 전용 데스크에서 미소 지으며 수령! "Shop more. Carry less." 메시지로 완결
+                </div>
+              </div>
+            </div>
+
+            <!-- Video File Path Note -->
+            <div class="p-3.5 rounded-xl bg-stone-950 border border-stone-800 text-[11px] text-stone-400 flex items-center justify-between">
+              <span class="flex items-center gap-1.5">
+                <i data-lucide="file-video" class="w-4 h-4 text-shinsegae-accent"></i> 영상 소스 파일 : <code class="text-shinsegae-accent font-mono font-bold">영상완성본.mp4</code>
+              </span>
+              <span class="text-[10px] text-stone-500">동일 폴더 위치 권장</span>
+            </div>
+
+            <!-- Action CTA -->
+            <div class="flex items-center gap-3 pt-2">
+              <button onclick="openBookingModal('STAY PASS', 35000)" class="flex-1 py-3 px-5 rounded-full bg-shinsegae-burgundy hover:bg-shinsegae-burgundylight text-white font-bold text-xs shadow-lg transition-all text-center">
+                쇼츠 속 LUGGAGE PASS 사전예약하기
+              </button>
+              <a href="#campaign-assets" class="py-3 px-5 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium text-xs transition-all text-center">
+                전체 스토리보드 보기
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Problem & Solution: Pain Point Comparison Section -->
+  <section id="painpoint" class="py-24 bg-stone-100 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-shinsegae-burgundy font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-shinsegae-burgundy/10">The Traveller's Dilemma</span>
+        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-stone-900 mt-3 mb-4">
+          “사고 싶은 건 많은데, 들고 갈 손이 없어요”
+        </h2>
+        <p class="text-stone-600 leading-relaxed">
+          한국에 첫 방문한 20대 후반 K-컬처 팬 ‘칭칭(28세)’. 설레는 백화점 쇼핑도 층을 거듭할수록 늘어나는 쇼핑백과 무거운 캐리어 때문에 결국 발길을 돌려야만 했습니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- BEFORE: Traditional Shopping Pain -->
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-red-100 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-28 h-28 bg-red-100/60 rounded-full flex items-center justify-center text-red-400 font-black text-4xl select-none">✕</div>
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold mb-4">
+              <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> BEFORE : 기존의 힘겨운 여행 쇼핑
+            </div>
+            <h3 class="text-2xl font-bold text-stone-900 mb-4">짐이 늘어날수록 쇼핑 시간은 단축됩니다</h3>
+            <ul class="space-y-4 text-stone-600 text-sm">
+              <li class="flex items-start gap-3">
+                <span class="p-1 rounded bg-red-50 text-red-600 mt-0.5"><i data-lucide="x" class="w-4 h-4"></i></span>
+                <div>
+                  <strong class="text-stone-900">무거운 28인치 캐리어 끌고 이동</strong>
+                  <p class="text-xs text-stone-500 mt-0.5">체크아웃 후 짐을 맡길 곳이 없어 이동할 때마다 번거롭고 계단/에스컬레이터에서 극심한 피로 발생</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="p-1 rounded bg-red-50 text-red-600 mt-0.5"><i data-lucide="x" class="w-4 h-4"></i></span>
+                <div>
+                  <strong class="text-stone-900">매장마다 손에 걸리는 쇼핑백 누적</strong>
+                  <p class="text-xs text-stone-500 mt-0.5">패션, 뷰티, 식품관을 돌 때마다 쇼핑백이 4~5개로 늘어나 추가 구매를 포기하게 됨</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="p-1 rounded bg-red-50 text-red-600 mt-0.5"><i data-lucide="x" class="w-4 h-4"></i></span>
+                <div>
+                  <strong class="text-stone-900">공항까지 짐 들고 대중교통 이동 스트레스</strong>
+                  <p class="text-xs text-stone-500 mt-0.5">비행기 탑승 직전까지 짐 분실 우려와 이동 피로로 여행의 마지막 순간이 망가집니다.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-4 border-t border-stone-100 text-xs text-red-600 font-semibold flex items-center justify-between">
+            <span>평균 백화점 체류: 2.5시간 한계</span>
+            <span>쇼핑 만족도 저하 ✘</span>
+          </div>
+        </div>
+
+        <!-- AFTER: Luggage Pass Experience -->
+        <div class="bg-shinsegae-green rounded-3xl p-8 text-white shadow-xl flex flex-col justify-between relative overflow-hidden border border-shinsegae-gold/40">
+          <div class="absolute -right-8 -top-8 w-28 h-28 bg-shinsegae-gold/20 rounded-full flex items-center justify-center text-shinsegae-accent font-black text-4xl select-none">✓</div>
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-shinsegae-burgundy text-white text-xs font-bold mb-4">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-shinsegae-accent"></i> AFTER : LUGGAGE PASS와 함께라면
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">사는 건 고객이, 들고 다니는 건 신세계가!</h3>
+            <ul class="space-y-4 text-stone-200 text-sm">
+              <li class="flex items-start gap-3">
+                <span class="p-1 rounded bg-shinsegae-lightgreen text-shinsegae-accent mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span>
+                <div>
+                  <strong class="text-white font-semibold">도착 즉시 캐리어 위탁 & 패스 발급</strong>
+                  <p class="text-xs text-stone-300 mt-0.5">신세계 웰컴센터에서 패스 1장 발급 후 무거운 캐리어는 바로 공항 직송 라인으로 접수</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="p-1 rounded bg-shinsegae-lightgreen text-shinsegae-accent mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span>
+                <div>
+                  <strong class="text-white font-semibold">매장 결제 시 태그만 하면 끝 (Hands-Free)</strong>
+                  <p class="text-xs text-stone-300 mt-0.5">선충전 패스로 결제하고 쇼핑백은 들 필요 없이 중앙 배송 허브로 자동 일괄 집결</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="p-1 rounded bg-shinsegae-lightgreen text-shinsegae-accent mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span>
+                <div>
+                  <strong class="text-white font-semibold">출국 직전 인천/김포 공항 카운터에서 원스톱 픽업</strong>
+                  <p class="text-xs text-stone-300 mt-0.5">양손 자유롭게 서울을 만끽하다가 비행기 타기 전 공항 데스크에서 온전히 수령</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-4 border-t border-shinsegae-lightgreen text-xs text-shinsegae-accent font-semibold flex items-center justify-between">
+            <span>체류시간 5.5시간으로 2.2배 확대</span>
+            <span>쇼핑 피로도 70% 경감 ✔</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4 Core Pillars Section -->
+  <section id="core-features" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-shinsegae-green font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-shinsegae-green/10">Four Pillars</span>
+        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-stone-900 mt-3 mb-4">
+          LUGGAGE PASS 핵심 4대 기능
+        </h2>
+        <p class="text-stone-600">
+          하나의 패스에 결제부터 보관, 직송, 멤버십 리워드까지 모두 담았습니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- 1. PAY -->
+        <div class="group bg-stone-50 hover:bg-shinsegae-green hover:text-white rounded-3xl p-8 border border-stone-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-shinsegae-green group-hover:bg-white/10 group-hover:text-shinsegae-accent mb-6 transition-colors">
+              <i data-lucide="credit-card" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold text-shinsegae-burgundy group-hover:text-shinsegae-accent tracking-widest uppercase">Pillar 01</span>
+            <h3 class="text-2xl font-bold text-stone-900 group-hover:text-white mt-1 mb-3">PAY</h3>
+            <p class="text-sm text-stone-600 group-hover:text-stone-200 leading-relaxed">
+              선충전형 통합 결제 시스템. 외화 카드 수수료 걱정 없이 바코드/NFC 태그 한 번으로 신세계 전 매장 빠른 결제.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-stone-200 group-hover:border-white/20 text-xs font-semibold flex items-center gap-1 text-shinsegae-green group-hover:text-shinsegae-accent">
+            <span>환전 불필요 간편 결제</span> <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 2. COLLECT -->
+        <div class="group bg-stone-50 hover:bg-shinsegae-green hover:text-white rounded-3xl p-8 border border-stone-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-shinsegae-green group-hover:bg-white/10 group-hover:text-shinsegae-accent mb-6 transition-colors">
+              <i data-lucide="package" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold text-shinsegae-burgundy group-hover:text-shinsegae-accent tracking-widest uppercase">Pillar 02</span>
+            <h3 class="text-2xl font-bold text-stone-900 group-hover:text-white mt-1 mb-3">COLLECT</h3>
+            <p class="text-sm text-stone-600 group-hover:text-stone-200 leading-relaxed">
+              매장별 자동 집결 시스템. 쇼핑백을 들고 다닐 필요 없이, 구매한 모든 상품이 스마트 물류 트래킹을 통해 한곳으로 자동 패킹됩니다.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-stone-200 group-hover:border-white/20 text-xs font-semibold flex items-center gap-1 text-shinsegae-green group-hover:text-shinsegae-accent">
+            <span>구매품 원터치 위탁</span> <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 3. DELIVER -->
+        <div class="group bg-stone-50 hover:bg-shinsegae-green hover:text-white rounded-3xl p-8 border border-stone-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-shinsegae-green group-hover:bg-white/10 group-hover:text-shinsegae-accent mb-6 transition-colors">
+              <i data-lucide="plane-takeoff" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold text-shinsegae-burgundy group-hover:text-shinsegae-accent tracking-widest uppercase">Pillar 03</span>
+            <h3 class="text-2xl font-bold text-stone-900 group-hover:text-white mt-1 mb-3">DELIVER</h3>
+            <p class="text-sm text-stone-600 group-hover:text-stone-200 leading-relaxed">
+              공항 직송 세이프티 배송. 백화점에서 맡긴 캐리어와 구매품이 인천/김포공항 전용 픽업 데스크로 안전하고 신속하게 운송됩니다.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-stone-200 group-hover:border-white/20 text-xs font-semibold flex items-center gap-1 text-shinsegae-green group-hover:text-shinsegae-accent">
+            <span>실시간 배송 위치 트래킹</span> <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 4. MEMBERSHIP -->
+        <div class="group bg-stone-50 hover:bg-shinsegae-green hover:text-white rounded-3xl p-8 border border-stone-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-shinsegae-green group-hover:bg-white/10 group-hover:text-shinsegae-accent mb-6 transition-colors">
+              <i data-lucide="sparkles" class="w-7 h-7"></i>
+            </div>
+            <span class="text-xs font-bold text-shinsegae-burgundy group-hover:text-shinsegae-accent tracking-widest uppercase">Pillar 04</span>
+            <h3 class="text-2xl font-bold text-stone-900 group-hover:text-white mt-1 mb-3">MEMBERSHIP</h3>
+            <p class="text-sm text-stone-600 group-hover:text-stone-200 leading-relaxed">
+              글로벌 프리미엄 멤버십. 전용 웰컴 드링크 쿠폰, 신세계 VIP 라운지 이용 혜택, 면세점 연계 할인권 등 차별화된 리워드 제공.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-stone-200 group-hover:border-white/20 text-xs font-semibold flex items-center gap-1 text-shinsegae-green group-hover:text-shinsegae-accent">
+            <span>VIP 라운지 및 추가 할인</span> <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5-Step Process Section -->
+  <section id="process" class="py-24 bg-stone-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-shinsegae-accent font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 border border-shinsegae-accent/30">Step-by-Step Guide</span>
+        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-white mt-3 mb-4">
+          맡기고 쇼핑하고, 공항에서 한 번에 받으세요
+        </h2>
+        <p class="text-stone-300">
+          처음 방한한 외국인 관광객도 3분이면 이해하는 간편한 5단계 이용 방식
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
+        
+        <!-- Step 1 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md hover:border-shinsegae-accent/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-shinsegae-burgundy flex items-center justify-center font-bold text-sm text-white mb-4">1</div>
+            <h4 class="text-lg font-bold mb-2">예약 및 패스 발급</h4>
+            <p class="text-xs text-stone-300 leading-relaxed">
+              온라인 사전예약 또는 신세계 웰컴센터 데스크에서 여권 확인 후 패스 발급 & 금액 선충전
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-shinsegae-accent">
+            ✓ 모바일 QR 또는 실물 패스 카드
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md hover:border-shinsegae-accent/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-shinsegae-burgundy flex items-center justify-center font-bold text-sm text-white mb-4">2</div>
+            <h4 class="text-lg font-bold mb-2">캐리어 보관 위탁</h4>
+            <p class="text-xs text-stone-300 leading-relaxed">
+              백화점 도착 직후 웰컴센터에 무거운 여행용 캐리어를 접수. RFID 러기지 태그 부착 후 안전 보관.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-shinsegae-accent">
+            ✓ 파손방지 전용 씰 부착
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md hover:border-shinsegae-accent/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-shinsegae-burgundy flex items-center justify-center font-bold text-sm text-white mb-4">3</div>
+            <h4 class="text-lg font-bold mb-2">패스 태그 후 쇼핑</h4>
+            <p class="text-xs text-stone-300 leading-relaxed">
+              입점 브랜드 매장에서 상품 선택 후 패스를 태그하여 결제. 쇼핑백을 직접 들지 않고 바로 다음 매장 이동!
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-shinsegae-accent">
+            ✓ 두 손 가벼운 릴랙스 쇼핑
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md hover:border-shinsegae-accent/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-shinsegae-burgundy flex items-center justify-center font-bold text-sm text-white mb-4">4</div>
+            <h4 class="text-lg font-bold mb-2">구매품 자동 집결 & 배송</h4>
+            <p class="text-xs text-stone-300 leading-relaxed">
+              지하 물류 센터에서 고객별 구매 품목을 자동 모아 패킹. 전용 물류 차량으로 출국 공항으로 즉시 직송.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-shinsegae-accent">
+            ✓ 알림톡/앱 푸시로 배송상태 확인
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md hover:border-shinsegae-accent/60 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-shinsegae-burgundy flex items-center justify-center font-bold text-sm text-white mb-4">5</div>
+            <h4 class="text-lg font-bold mb-2">공항 데스크 원스톱 수령</h4>
+            <p class="text-xs text-stone-300 leading-relaxed">
+              출국 전 공항 신세계 픽업 데스크에서 패스 또는 모바일 바코드 태그 후 캐리어와 쇼핑백 일괄 수령.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-shinsegae-accent">
+            ✓ 인천공항 T1/T2 & 김포공항
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Pass Types & Pricing Table -->
+  <section id="passes" class="py-24 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-shinsegae-burgundy font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-shinsegae-burgundy/10">Travel Passes</span>
+        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-stone-900 mt-3 mb-4">
+          여행 일정에 딱 맞는 패스를 선택하세요
+        </h2>
+        <p class="text-stone-600">
+          당일 쇼핑 고객부터 일주일간 머무는 장기 여행객까지 맞춤형 등급을 제공합니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
+        
+        <!-- Pass 1: DAY PASS -->
+        <div class="bg-white rounded-3xl p-8 shadow-md border border-stone-200 flex flex-col justify-between hover:shadow-xl transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 bg-stone-100 text-stone-700 text-xs font-bold rounded-full">당일 쇼핑 추천</span>
+              <span class="text-shinsegae-burgundy font-serif font-bold text-lg">CLASSIC</span>
+            </div>
+            <h3 class="serif-title text-2xl font-bold text-stone-900">DAY PASS</h3>
+            <p class="text-xs text-stone-500 mt-1 mb-6">출국 당일 또는 1일 집중 쇼핑에 최적화</p>
+            
+            <div class="mb-6 pb-6 border-b border-stone-100">
+              <span class="text-4xl font-extrabold text-stone-900">₩20,000</span>
+              <span class="text-xs text-stone-500 ml-1">/ 1일권</span>
+            </div>
+
+            <ul class="space-y-3 text-xs text-stone-600">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 캐리어 1개 당일 보관 및 공항 직송
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 당일 쇼핑백 무제한 자동 집결(COLLECT)
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 패스 선충전 결제 기능 지원
+              </li>
+              <li class="flex items-center gap-2 text-stone-400 line-through">
+                <i data-lucide="x" class="w-4 h-4 text-stone-300"></i> 다회차 연속 이용 지원
+              </li>
+              <li class="flex items-center gap-2 text-stone-400 line-through">
+                <i data-lucide="x" class="w-4 h-4 text-stone-300"></i> VIP 라운지 무료 이용
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8">
+            <button onclick="openBookingModal('DAY PASS', 20000)" class="w-full py-3 rounded-xl border border-stone-300 hover:border-shinsegae-green hover:bg-shinsegae-green hover:text-white font-semibold text-xs tracking-wider transition-all">
+              DAY PASS 선택
+            </button>
+          </div>
+        </div>
+
+        <!-- Pass 2: STAY PASS (Best Value) -->
+        <div class="bg-gradient-to-b from-stone-900 to-shinsegae-darkgreen text-white rounded-3xl p-8 shadow-2xl border-2 border-shinsegae-gold flex flex-col justify-between relative transform md:-translate-y-4 hover:shadow-2xl transition-all">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-shinsegae-accent text-stone-950 font-bold text-[11px] px-4 py-1 rounded-full uppercase tracking-wider shadow">
+            MOST POPULAR • BEST FIT
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 bg-white/10 text-shinsegae-accent text-xs font-bold rounded-full">체류형 여행객 1위</span>
+              <span class="text-shinsegae-accent font-serif font-bold text-lg">SIGNATURE</span>
+            </div>
+            <h3 class="serif-title text-2xl font-bold text-white">STAY PASS</h3>
+            <p class="text-xs text-stone-300 mt-1 mb-6">최대 7일간 서울에 머무는 동안 반복 이용</p>
+            
+            <div class="mb-6 pb-6 border-b border-white/10">
+              <span class="text-4xl font-extrabold text-shinsegae-accent">₩35,000</span>
+              <span class="text-xs text-stone-300 ml-1">/ 7일권</span>
+            </div>
+
+            <ul class="space-y-3 text-xs text-stone-200">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-shinsegae-accent"></i> 최대 7일간 캐리어 자유 보관 (호텔 연계)
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-shinsegae-accent"></i> 7일간 매일 쇼핑백 무제한 집결 & 공항 수령
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-shinsegae-accent"></i> 신세계 웰컴 드링크 쿠폰 2매 증정
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-shinsegae-accent"></i> 면세점 및 F&B 제휴 10% 우대 할인권
+              </li>
+              <li class="flex items-center gap-2 text-stone-400 line-through">
+                <i data-lucide="x" class="w-4 h-4 text-stone-500"></i> VIP 전용 라운지 상시 입장
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8">
+            <button onclick="openBookingModal('STAY PASS', 35000)" class="w-full py-3.5 rounded-xl bg-shinsegae-accent hover:bg-yellow-400 text-stone-950 font-bold text-xs tracking-wider transition-all shadow-lg">
+              STAY PASS 예약하기
+            </button>
+          </div>
+        </div>
+
+        <!-- Pass 3: PREMIUM PASS -->
+        <div class="bg-white rounded-3xl p-8 shadow-md border border-stone-200 flex flex-col justify-between hover:shadow-xl transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 bg-amber-50 text-amber-800 text-xs font-bold rounded-full">VIP 컨시어지 케어</span>
+              <span class="text-shinsegae-gold font-serif font-bold text-lg">LUXURY</span>
+            </div>
+            <h3 class="serif-title text-2xl font-bold text-stone-900">PREMIUM PASS</h3>
+            <p class="text-xs text-stone-500 mt-1 mb-6">우선 배송과 백화점 VIP 전용 라운지 이용권</p>
+            
+            <div class="mb-6 pb-6 border-b border-stone-100">
+              <span class="text-4xl font-extrabold text-stone-900">₩50,000</span>
+              <span class="text-xs text-stone-500 ml-1">/ 14일권</span>
+            </div>
+
+            <ul class="space-y-3 text-xs text-stone-600">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 캐리어 2개 무료 보관 및 익스프레스 공항 배송
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> <strong class="text-stone-900">신세계 백화점 VIP 멤버스 라운지 입장 (동반 1인)</strong>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 퍼스널 쇼퍼 & 통역 지원 예약 서비스
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 공항 전용 데스크 패스트트랙 픽업
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 명품 전용 프리미엄 안전 방수 패킹
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8">
+            <button onclick="openBookingModal('PREMIUM PASS', 50000)" class="w-full py-3 rounded-xl border border-stone-300 hover:border-shinsegae-burgundy hover:bg-shinsegae-burgundy hover:text-white font-semibold text-xs tracking-wider transition-all">
+              PREMIUM PASS 선택
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Campaign Showcase: Card News & Shorts Tab -->
+  <section id="campaign-assets" class="py-24 bg-white border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-shinsegae-green font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-shinsegae-green/10">Creative Assets</span>
+        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-stone-900 mt-3 mb-4">
+          오픈 홍보물 3종 쇼케이스
+        </h2>
+        <p class="text-stone-600">
+          실제 론칭 캠페인에 집행되는 포스터, 인스타그램 5컷 카드뉴스, 50초 스토리보드 쇼츠를 둘러보세요.
+        </p>
+
+        <!-- Media Switcher Tab -->
+        <div class="flex justify-center gap-2 mt-8">
+          <button onclick="switchMediaTab('cardnews')" id="tab-cardnews" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-shinsegae-green text-white shadow-sm flex items-center gap-2">
+            <i data-lucide="images" class="w-4 h-4"></i> 인스타그램 카드뉴스 (5컷)
+          </button>
+          <button onclick="switchMediaTab('shorts')" id="tab-shorts" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-stone-100 text-stone-600 hover:bg-stone-200 flex items-center gap-2">
+            <i data-lucide="video" class="w-4 h-4"></i> 쇼츠 영상 스토리보드 (50초)
+          </button>
+          <button onclick="switchMediaTab('poster')" id="tab-poster" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-stone-100 text-stone-600 hover:bg-stone-200 flex items-center gap-2">
+            <i data-lucide="file-text" class="w-4 h-4"></i> 메인 포스터 브리프
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content 1: Card News Carousel -->
+      <div id="content-cardnews" class="block">
+        <div class="bg-stone-50 rounded-3xl p-6 sm:p-10 border border-stone-200">
+          <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
+            
+            <!-- Card Visual Slider Screen -->
+            <div class="w-full lg:w-1/2 flex flex-col items-center">
+              <div class="relative w-full max-w-md aspect-square bg-stone-900 rounded-2xl shadow-xl overflow-hidden border-4 border-stone-800" id="cardnews-viewer">
+                <!-- Card Inner Content dynamically changed by JS -->
+                <div id="card-inner" class="w-full h-full p-8 flex flex-col justify-between bg-gradient-to-br from-stone-900 to-shinsegae-darkgreen text-white relative">
+                  <!-- Tag -->
+                  <div class="flex justify-between items-center">
+                    <span id="card-badge" class="px-3 py-1 rounded-full text-[11px] font-bold bg-shinsegae-burgundy text-white tracking-wider">01 Hook</span>
+                    <span id="card-counter" class="text-xs text-shinsegae-accent font-mono font-bold">1 / 5</span>
+                  </div>
+                  <!-- Main Copy -->
+                  <div class="my-auto py-4">
+                    <div id="card-subhead" class="text-xs font-medium text-shinsegae-accent mb-2">외국인 관광객을 위한 핸즈프리 쇼핑</div>
+                    <h3 id="card-head" class="serif-title text-2xl sm:text-3xl font-bold leading-snug">쇼핑은 더 많이,<br/>짐은 더 가볍게.</h3>
+                    <p id="card-desc" class="text-xs text-stone-300 mt-3 leading-relaxed">
+                      LUGGAGE PASS. 쇼핑부터 보관, 공항 배송까지 한 장의 패스로 해결하는 신세계백화점의 외국인 관광객 맞춤형 핸즈프리 쇼핑 솔루션입니다.
+                    </p>
+                  </div>
+                  <!-- Foot -->
+                  <div class="flex justify-between items-center text-[10px] text-stone-400 border-t border-white/10 pt-3">
+                    <span>SHINSEGAE DEPARTMENT STORE</span>
+                    <span class="text-shinsegae-accent">Shop more. Carry less.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Controller Buttons -->
+              <div class="flex items-center gap-4 mt-6">
+                <button onclick="prevCard()" class="w-10 h-10 rounded-full bg-white shadow border border-stone-200 flex items-center justify-center text-stone-700 hover:bg-stone-100">
+                  <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <div class="flex gap-2" id="card-dots">
+                  <!-- Dots generated in JS -->
+                </div>
+                <button onclick="nextCard()" class="w-10 h-10 rounded-full bg-white shadow border border-stone-200 flex items-center justify-center text-stone-700 hover:bg-stone-100">
+                  <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Card News Narrative Description -->
+            <div class="w-full lg:w-1/2 space-y-4">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold">
+                <i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-600"></i> 인스타그램/페이스북 카루셀 표준 (1:1 정방형 5컷)
+              </div>
+              <h3 class="text-2xl font-bold text-stone-900" id="card-info-title">01. Hook · 서비스 소개</h3>
+              <p class="text-sm text-stone-600 leading-relaxed" id="card-info-desc">
+                공항과 여행 비주얼로 기대감을 형성하는 첫 슬라이드입니다. 타깃 고객이 피드를 넘기다 3초 안에 직관적으로 신세계백화점의 새로운 혜택임을 인지하도록 제작되었습니다.
+              </p>
+              
+              <div class="p-5 rounded-2xl bg-white border border-stone-200 space-y-3">
+                <div class="text-xs font-bold text-stone-800 flex items-center gap-2">
+                  <i data-lucide="target" class="w-4 h-4 text-shinsegae-burgundy"></i> 스토리텔링 구조:
+                </div>
+                <div class="grid grid-cols-5 text-center text-[11px] font-semibold gap-1">
+                  <div class="p-2 rounded bg-stone-100 text-stone-700">1. Hook</div>
+                  <div class="p-2 rounded bg-stone-100 text-stone-700">2. 공감</div>
+                  <div class="p-2 rounded bg-stone-100 text-stone-700">3. 솔루션</div>
+                  <div class="p-2 rounded bg-stone-100 text-stone-700">4. 이용법</div>
+                  <div class="p-2 rounded bg-shinsegae-burgundy text-white">5. 전환(CTA)</div>
+                </div>
+                <p class="text-[11px] text-stone-500">
+                  마지막 슬라이드에서는 사전예약 링크 및 QR코드를 제공하여 이탈 없이 예약 전환으로 연결되도록 설계했습니다.
+                </p>
+              </div>
+
+              <div class="pt-2">
+                <button onclick="openBookingModal()" class="px-6 py-2.5 rounded-full bg-shinsegae-burgundy text-white text-xs font-semibold hover:bg-shinsegae-burgundylight transition-all">
+                  지금 카드뉴스 속 패스 예약하기 →
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Shorts Timeline (50s) -->
+      <div id="content-shorts" class="hidden">
+        <div class="bg-stone-50 rounded-3xl p-6 sm:p-10 border border-stone-200">
+          <div class="max-w-4xl mx-auto">
+            
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-8 pb-4 border-b border-stone-200">
+              <div>
+                <span class="text-xs font-bold text-shinsegae-burgundy uppercase">Viral Short-form Storyboard</span>
+                <h3 class="text-2xl font-bold text-stone-900 mt-1">칭칭의 서울 여행이 가벼워진 이유 (50초)</h3>
+              </div>
+              <div class="text-xs text-stone-500">
+                규격: 9:16 세로형 | 타깃: 20대 K-컬처 개별여행객 | 채널: Reels, Shorts, TikTok
+              </div>
+            </div>
+
+            <!-- Timeline Blocks -->
+            <div class="space-y-4">
+              
+              <!-- Scene 1 -->
+              <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col md:flex-row gap-5 items-start md:items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 rounded-xl bg-red-100 text-red-700 font-bold flex flex-col items-center justify-center text-xs flex-shrink-0">
+                    <span>0:00</span>
+                    <span class="text-[10px] text-red-500">~ 0:05</span>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">HOOK • 문제 제기</span>
+                    <h4 class="font-bold text-stone-900 mt-1">양손 가득 쇼핑백을 들고 지쳐가는 칭칭</h4>
+                    <p class="text-xs text-stone-500">쇼핑거리에서 무거운 짐에 손가락이 빨개지고 표정이 굳어가는 모습으로 5초 안에 시청 이탈 방지</p>
+                  </div>
+                </div>
+                <div class="text-right text-xs font-mono text-stone-400 bg-stone-50 px-3 py-1.5 rounded-lg border border-stone-100 flex-shrink-0">
+                  자막: "양손 가득 짐을 들고 있는 칭칭"
+                </div>
+              </div>
+
+              <!-- Scene 2 -->
+              <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col md:flex-row gap-5 items-start md:items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 rounded-xl bg-orange-100 text-orange-700 font-bold flex flex-col items-center justify-center text-xs flex-shrink-0">
+                    <span>0:05</span>
+                    <span class="text-[10px] text-orange-500">~ 0:15</span>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded">PAIN POINT 심화</span>
+                    <h4 class="font-bold text-stone-900 mt-1">짐 맡길 곳을 찾아 헤매는 캐리어 스트레스</h4>
+                    <p class="text-xs text-stone-500">쇼핑 매장 입구마다 캐리어를 끌고 다니며 난처해하는 현실적인 방한 여행자의 고충 부각</p>
+                  </div>
+                </div>
+                <div class="text-right text-xs font-mono text-stone-400 bg-stone-50 px-3 py-1.5 rounded-lg border border-stone-100 flex-shrink-0">
+                  자막: "짐 맡길 곳을 찾는 칭칭"
+                </div>
+              </div>
+
+              <!-- Scene 3 -->
+              <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col md:flex-row gap-5 items-start md:items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-800 font-bold flex flex-col items-center justify-center text-xs flex-shrink-0">
+                    <span>0:15</span>
+                    <span class="text-[10px] text-emerald-600">~ 0:27</span>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">SOLUTION • 반전</span>
+                    <h4 class="font-bold text-stone-900 mt-1">“찾았다 러기지패스!” 신세계 웰컴센터 도착</h4>
+                    <p class="text-xs text-stone-500">패스를 발급받고 캐리어를 맡기자마자 마법처럼 두 손이 가벼워진 칭칭. 매장 태그 결제 연출.</p>
+                  </div>
+                </div>
+                <div class="text-right text-xs font-mono text-stone-400 bg-stone-50 px-3 py-1.5 rounded-lg border border-stone-100 flex-shrink-0">
+                  자막: "러기지패스 하나면 결제도 한번에"
+                </div>
+              </div>
+
+              <!-- Scene 4 -->
+              <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col md:flex-row gap-5 items-start md:items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-800 font-bold flex flex-col items-center justify-center text-xs flex-shrink-0">
+                    <span>0:27</span>
+                    <span class="text-[10px] text-blue-600">~ 0:38</span>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">HOW IT WORKS</span>
+                    <h4 class="font-bold text-stone-900 mt-1">공항 전용 데스크에서 미소 띤 픽업</h4>
+                    <p class="text-xs text-stone-500">백화점에서 쇼핑한 물건과 캐리어가 이미 공항 카운터에 안전하게 도착해 있는 원스톱 픽업 장면</p>
+                  </div>
+                </div>
+                <div class="text-right text-xs font-mono text-stone-400 bg-stone-50 px-3 py-1.5 rounded-lg border border-stone-100 flex-shrink-0">
+                  자막: "STEP 3. Pick up everything at Airport!"
+                </div>
+              </div>
+
+              <!-- Scene 5 -->
+              <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col md:flex-row gap-5 items-start md:items-center justify-between">
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 rounded-xl bg-shinsegae-burgundy text-white font-bold flex flex-col items-center justify-center text-xs flex-shrink-0">
+                    <span>0:38</span>
+                    <span class="text-[10px] text-shinsegae-accent">~ 0:50</span>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-white bg-shinsegae-burgundy px-2 py-0.5 rounded">CTA & OUTRO</span>
+                    <h4 class="font-bold text-stone-900 mt-1">상황이 역전된 칭칭! 해피엔딩 & 예약 링크</h4>
+                    <p class="text-xs text-stone-500">“Shop more, Carry less.” 핵심 메시지와 함께 하단 예약 유도 링크/쿠폰코드 노출</p>
+                  </div>
+                </div>
+                <div class="text-right text-xs font-mono text-stone-400 bg-stone-50 px-3 py-1.5 rounded-lg border border-stone-100 flex-shrink-0">
+                  자막: "여행이 더 가벼워지는 순간, 신세계와 함께"
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 3: Poster Overview -->
+      <div id="content-poster" class="hidden">
+        <div class="bg-stone-50 rounded-3xl p-6 sm:p-10 border border-stone-200">
+          <div class="flex flex-col lg:flex-row gap-10 items-center">
+            
+            <!-- Poster Simulation Graphic -->
+            <div class="w-full lg:w-1/3 flex justify-center">
+              <div class="w-64 aspect-[2/3] bg-gradient-to-b from-stone-900 via-shinsegae-darkgreen to-stone-950 rounded-xl p-5 shadow-2xl border-2 border-shinsegae-gold/40 text-white flex flex-col justify-between relative overflow-hidden">
+                <div class="text-center">
+                  <span class="text-[8px] tracking-[0.2em] font-serif text-stone-300">SHINSEGAE</span>
+                  <div class="text-[10px] text-shinsegae-accent mt-2 font-medium">쇼핑은 더 많이, 짐은 더 가볍게</div>
+                  <h4 class="text-xl font-bold font-serif tracking-wider text-white">LUGGAGE PASS</h4>
+                </div>
+
+                <div class="my-auto text-center py-4 bg-white/5 rounded-lg border border-white/10">
+                  <i data-lucide="plane" class="w-8 h-8 text-shinsegae-accent mx-auto mb-2"></i>
+                  <span class="text-xs font-bold block">4대 올인원 서비스</span>
+                  <div class="grid grid-cols-2 gap-1 text-[9px] text-stone-300 mt-2 px-2">
+                    <span class="bg-black/30 p-1 rounded">PAY 결제</span>
+                    <span class="bg-black/30 p-1 rounded">COLLECT 집결</span>
+                    <span class="bg-black/30 p-1 rounded">DELIVER 직송</span>
+                    <span class="bg-black/30 p-1 rounded">VIP 라운지</span>
+                  </div>
+                </div>
+
+                <div class="text-center border-t border-white/10 pt-2 text-[9px] text-stone-400">
+                  사고, 들고 다니지 마세요. 신세계가 대신해드립니다.
+                </div>
+              </div>
+            </div>
+
+            <!-- Poster Specification Description -->
+            <div class="w-full lg:w-2/3 space-y-4">
+              <span class="text-xs font-bold text-shinsegae-green bg-emerald-50 px-3 py-1 rounded-full uppercase">오프라인 거점 광고</span>
+              <h3 class="text-2xl font-bold text-stone-900">종합 포스터 (2:3 세로형) 전략</h3>
+              <p class="text-sm text-stone-600 leading-relaxed">
+                매장 방문 접점(정문 로비 입간판, 웰컴센터 배너, 지하철 연결통로 라이트박스)에서 <strong>체류시간 3초 이내</strong>에 서비스의 핵심 혜택을 뇌리에 각인시키도록 직관적인 4대 기능 그리드와 시그니처 딥그린 컬러를 활용했습니다.
+              </p>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
+                <div class="p-3 bg-white rounded-xl border border-stone-200">
+                  <div class="font-bold text-stone-800">규격</div>
+                  <div class="text-stone-500 mt-0.5">2:3 (1024×1536)</div>
+                </div>
+                <div class="p-3 bg-white rounded-xl border border-stone-200">
+                  <div class="font-bold text-stone-800">설치 장소</div>
+                  <div class="text-stone-500 mt-0.5">본점/강남점 로비, 웰컴센터</div>
+                </div>
+                <div class="p-3 bg-white rounded-xl border border-stone-200">
+                  <div class="font-bold text-stone-800">디지털 연동</div>
+                  <div class="text-stone-500 mt-0.5">신세계 앱/웹 팝업 배너</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Promotion Strategy & Planning Deck Summary Section -->
+  <section id="strategy" class="py-24 bg-stone-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-shinsegae-burgundy font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-shinsegae-burgundy/10">Execution Plan</span>
+        <h2 class="serif-title text-3xl sm:text-4xl font-bold text-stone-900 mt-3 mb-4">
+          오픈 전·당일·후 실행 전략 및 KPI
+        </h2>
+        <p class="text-stone-600">
+          홍보 기획서 2조의 6주간 런칭 캠페인(D-14 티저 ~ D+30 성과 확산) 채널 집행 계획 요약
+        </p>
+      </div>
+
+      <!-- Channel Execution Table -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200 mb-12 overflow-x-auto">
+        <h3 class="text-lg font-bold text-stone-900 mb-4 flex items-center gap-2">
+          <i data-lucide="radio" class="w-5 h-5 text-shinsegae-burgundy"></i> 채널별 맞춤 집행 매트릭스
+        </h3>
+        <table class="w-full text-left text-xs text-stone-700 min-w-[650px]">
+          <thead class="bg-stone-50 text-stone-500 uppercase font-semibold border-b border-stone-200">
+            <tr>
+              <th class="py-3 px-4">채널</th>
+              <th class="py-3 px-4">소재</th>
+              <th class="py-3 px-4">게시 형식</th>
+              <th class="py-3 px-4">집행 시점</th>
+              <th class="py-3 px-4">목표 (KPI)</th>
+              <th class="py-3 px-4">담당 부서</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-100">
+            <tr>
+              <td class="py-3.5 px-4 font-semibold text-stone-900">오프라인 매장 사이니지</td>
+              <td class="py-3.5 px-4">포스터</td>
+              <td class="py-3.5 px-4">실사출력 배너 / 입간판</td>
+              <td class="py-3.5 px-4">D-7 ~ 상시</td>
+              <td class="py-3.5 px-4">매장 접점 인지도 확보</td>
+              <td class="py-3.5 px-4 text-stone-500">매장기획팀</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-semibold text-stone-900">웰컴센터 · 공항 데스크</td>
+              <td class="py-3.5 px-4">포스터 + 쇼츠 루프</td>
+              <td class="py-3.5 px-4">디지털 사이니지 상영</td>
+              <td class="py-3.5 px-4">D-Day ~ 상시</td>
+              <td class="py-3.5 px-4">현장 체험 및 발급 전환</td>
+              <td class="py-3.5 px-4 text-stone-500">웰컴센터 운영팀</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-semibold text-stone-900">인스타그램 · 페이스북 피드</td>
+              <td class="py-3.5 px-4">카드뉴스 5컷</td>
+              <td class="py-3.5 px-4">피드 게시 + 해시태그</td>
+              <td class="py-3.5 px-4">D-3(티저) → D-Day 본게시</td>
+              <td class="py-3.5 px-4">저장 / 공유 / 좋아요 수</td>
+              <td class="py-3.5 px-4 text-stone-500">SNS 마케팅팀</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-semibold text-stone-900">릴스 · 유튜브 쇼츠 · 틱톡</td>
+              <td class="py-3.5 px-4">쇼츠 50초</td>
+              <td class="py-3.5 px-4">숏폼 영상 동시 업로드</td>
+              <td class="py-3.5 px-4">D-Day 오전 동시</td>
+              <td class="py-3.5 px-4">조회수 및 할인코드 유입</td>
+              <td class="py-3.5 px-4 text-stone-500">콘텐츠제작팀</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-semibold text-stone-900">공식 홈페이지 · 모바일 앱</td>
+              <td class="py-3.5 px-4">포스터 배너 + 요약</td>
+              <td class="py-3.5 px-4">메인 팝업 & 이벤트 페이지</td>
+              <td class="py-3.5 px-4">D-Day ~ D+30</td>
+              <td class="py-3.5 px-4">온라인 사전예약 전환율</td>
+              <td class="py-3.5 px-4 text-stone-500">디지털마케팅팀</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-semibold text-stone-900">K-컬처 해외 인플루언서</td>
+              <td class="py-3.5 px-4">쇼츠 리믹스 · 브이로그</td>
+              <td class="py-3.5 px-4">체험 협찬 콘텐츠</td>
+              <td class="py-3.5 px-4">D-Day ~ D+14</td>
+              <td class="py-3.5 px-4">해외 유입 트래픽 및 UGC 확산</td>
+              <td class="py-3.5 px-4 text-stone-500">글로벌마케팅팀</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Execution Checklist 3-Stages -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- D-14 to D-1 -->
+        <div class="bg-white rounded-2xl p-6 border border-stone-200">
+          <div class="flex items-center gap-2 mb-4 text-shinsegae-green">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+            <h4 class="font-bold text-stone-900">오픈 전 (D-14 ~ D-1)</h4>
+          </div>
+          <ul class="space-y-2.5 text-xs text-stone-600">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-green"></span> 홍보물 3종 최종 감수 및 색교정</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-green"></span> 로비 및 연결통로 입간판 설치</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-green"></span> D-3 인스타그램 티저 예약 발행</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-green"></span> 홈페이지 사전예약 및 QR 결제 테스트</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-green"></span> 웰컴센터 현장 직원 응대 매뉴얼 교육</li>
+          </ul>
+        </div>
+
+        <!-- D-Day -->
+        <div class="bg-white rounded-2xl p-6 border-2 border-shinsegae-burgundy relative shadow-md">
+          <div class="absolute -top-3 right-4 px-2 py-0.5 bg-shinsegae-burgundy text-white text-[10px] font-bold rounded">D-DAY</div>
+          <div class="flex items-center gap-2 mb-4 text-shinsegae-burgundy">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+            <h4 class="font-bold text-stone-900">오픈 당일 (D-Day)</h4>
+          </div>
+          <ul class="space-y-2.5 text-xs text-stone-600">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-burgundy"></span> 웰컴센터 디지털 배너 및 사이니지 송출 점검</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-burgundy"></span> 인스타그램·페이스북 카드뉴스 본게시</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-burgundy"></span> 릴스·쇼츠·틱톡 영상 동시 런칭</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-burgundy"></span> 웰컴센터 오픈 기념 웰컴드링크 이벤트</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-shinsegae-burgundy"></span> 실시간 CS 및 초기 발급량 모니터링</li>
+          </ul>
+        </div>
+
+        <!-- D+1 to D+30 -->
+        <div class="bg-white rounded-2xl p-6 border border-stone-200">
+          <div class="flex items-center gap-2 mb-4 text-shinsegae-gold">
+            <i data-lucide="trending-up" class="w-5 h-5 text-amber-700"></i>
+            <h4 class="font-bold text-stone-900">오픈 후 (D+1 ~ D+30)</h4>
+          </div>
+          <ul class="space-y-2.5 text-xs text-stone-600">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> 주간 단위 발급 전환율 및 체류시간 트래킹</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> UGC 포토존 해시태그 인증 리그램 & 쿠폰 리워드</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> 해외 인플루언서 콘텐츠 유입 분석 및 예산 재배분</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> 캠페인 6주 종합 성과 보고서 발행</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Reservation CTA Banner -->
+  <section class="py-20 bg-gradient-to-r from-shinsegae-darkgreen via-shinsegae-green to-shinsegae-darkgreen text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(#c5a059_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <span class="text-shinsegae-accent font-serif tracking-widest text-xs uppercase font-bold">Limited Launch Benefit</span>
+      <h2 class="serif-title text-3xl sm:text-5xl font-bold mt-2 mb-6">
+        여행이 더 가벼워지는 순간, 신세계와 함께.
+      </h2>
+      <p class="text-stone-200 text-sm sm:text-base max-w-xl mx-auto mb-8 font-light leading-relaxed">
+        지금 사전예약 고객 전원에게 신세계백화점 F&B 10,000원 상품권과 공항 전용 픽업 패스트트랙 서비스를 무료로 제공합니다.
+      </p>
+      <button onclick="openBookingModal()" class="px-10 py-4 rounded-full bg-shinsegae-burgundy hover:bg-shinsegae-burgundylight text-white font-bold text-sm tracking-wider shadow-2xl transition-all transform hover:scale-105">
+        LUGGAGE PASS 온라인 예약하기
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-stone-950 text-stone-400 py-16 text-xs border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-12 border-b border-stone-800">
+        <div>
+          <span class="block tracking-[0.25em] text-xs font-serif font-bold text-stone-300">SHINSEGAE DEPARTMENT STORE</span>
+          <p class="text-stone-500 mt-1">LUGGAGE PASS 런칭 캠페인 홍보 프로젝트 | 제작: 팀 2조 (2026.09.22)</p>
+        </div>
+        <div class="flex flex-wrap gap-4 text-stone-300 font-medium">
+          <a href="#about" class="hover:text-white">기획 배경</a>
+          <span>•</span>
+          <a href="#core-features" class="hover:text-white">핵심 가치</a>
+          <span>•</span>
+          <a href="#passes" class="hover:text-white">이용 요금</a>
+          <span>•</span>
+          <a href="#campaign-assets" class="hover:text-white">산출물 목록</a>
+        </div>
+      </div>
+      
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-stone-500 text-[11px]">
+        <p>© 2026 SHINSEGAE DEPARTMENT STORE. All rights reserved. “Shop more. Carry less.”</p>
+        <p class="flex items-center gap-2">
+          <span>인천공항 제1·2여객터미널 픽업 데스크</span>
+          <span>•</span>
+          <span>김포국제공항 데스크</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative border border-stone-200 animate-in fade-in zoom-in-95 duration-200">
+      
+      <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-stone-400 hover:text-stone-800">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <span class="text-xs font-bold text-shinsegae-burgundy uppercase tracking-wider">Fast Reservation</span>
+        <h3 class="serif-title text-2xl font-bold text-stone-900 mt-1">LUGGAGE PASS 사전예약</h3>
+        <p class="text-xs text-stone-500 mt-1">공항에서 짐 없이 출발하고, 쇼핑을 자유롭게 즐기세요.</p>
+      </div>
+
+      <form id="passForm" onsubmit="handleBookingSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-stone-700 mb-1">패스 종류 선택</label>
+          <select id="modal-pass-type" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-shinsegae-green font-medium">
+            <option value="DAY PASS" data-price="20000">DAY PASS (당일권) - ₩20,000</option>
+            <option value="STAY PASS" data-price="35000" selected>STAY PASS (7일권, 인기) - ₩35,000</option>
+            <option value="PREMIUM PASS" data-price="50000">PREMIUM PASS (VIP 라운지) - ₩50,000</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-stone-700 mb-1">예약자 성명 (영문)</label>
+            <input type="text" required placeholder="CHING CHING" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-shinsegae-green font-medium" />
+          </div>
+          <div>
+            <label class="block font-bold text-stone-700 mb-1">여권 번호 앞 6자리</label>
+            <input type="text" required placeholder="E12345" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-shinsegae-green font-medium" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-stone-700 mb-1">방문 예정일</label>
+            <input type="date" required value="2026-09-22" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-shinsegae-green font-medium" />
+          </div>
+          <div>
+            <label class="block font-bold text-stone-700 mb-1">공항 수령 희망 장소</label>
+            <select class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-shinsegae-green font-medium">
+              <option>인천국제공항 T1 신세계 데스크</option>
+              <option>인천국제공항 T2 신세계 데스크</option>
+              <option>김포국제공항 신세계 데스크</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-stone-700 mb-1">연락처 (모바일/WhatsApp/WeChat)</label>
+          <input type="text" required placeholder="+82 10-0000-0000 또는 메신저 ID" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-shinsegae-green font-medium" />
+        </div>
+
+        <div class="p-3 bg-stone-50 rounded-xl border border-stone-200 text-[11px] text-stone-600 flex justify-between items-center">
+          <span>최종 결제 예상 금액</span>
+          <span class="text-base font-extrabold text-shinsegae-burgundy" id="modal-price-display">₩35,000</span>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-shinsegae-burgundy hover:bg-shinsegae-burgundylight text-white font-bold text-xs tracking-wider transition-all shadow-md mt-2">
+          예약 접수 및 모바일 바코드 발급
+        </button>
+      </form>
+
+      <div id="bookingSuccess" class="hidden text-center py-6">
+        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
+          <i data-lucide="check" class="w-6 h-6"></i>
+        </div>
+        <h4 class="text-lg font-bold text-stone-900">예약이 완료되었습니다!</h4>
+        <p class="text-xs text-stone-600 mt-1">예약 확인증 및 QR 모바일 패스가 카카오톡/메신저로 전송되었습니다.</p>
+        <button onclick="closeBookingModal()" class="mt-4 px-6 py-2 rounded-lg bg-stone-900 text-white text-xs font-semibold">닫기</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Card News Data
+    const cardData = [
+      {
+        badge: "01 Hook",
+        counter: "1 / 5",
+        subhead: "외국인 관광객을 위한 핸즈프리 쇼핑",
+        head: "쇼핑은 더 많이,\n짐은 더 가볍게.",
+        desc: "LUGGAGE PASS. 쇼핑부터 보관, 공항 배송까지 한 장의 패스로 해결하는 신세계백화점의 외국인 관광객 맞춤형 핸즈프리 쇼핑 솔루션입니다.",
+        title: "01. Hook · 서비스 소개",
+        infoDesc: "공항과 여행 비주얼로 기대감을 형성하는 첫 슬라이드입니다. 타깃 고객이 피드를 넘기다 3초 안에 직관적으로 신세계백화점의 새로운 혜택임을 인지하도록 제작되었습니다."
+      },
+      {
+        badge: "02 Pain Point",
+        counter: "2 / 5",
+        subhead: "여행 중 쇼핑, 왜 이렇게 힘들까요?",
+        head: "사고 싶은 건 많은데\n들고 갈 손이 없어요",
+        desc: "무거운 캐리어, 늘어나는 쇼핑백, 공항까지 이동 피로... 짐이 늘어날수록 즐거운 쇼핑 시간은 줄어들고 맙니다.",
+        title: "02. Pain Point 공감",
+        infoDesc: "타깃 페르소나 ‘칭칭(28세)’의 현실적인 불편 상황을 시각적으로 강하게 공감시켜 핸즈프리 솔루션에 대한 필요성을 각인시킵니다."
+      },
+      {
+        badge: "03 Features",
+        counter: "3 / 5",
+        subhead: "LUGGAGE PASS 핵심 기능 4가지",
+        head: "패스 하나로\n결제부터 공항 수령까지",
+        desc: "PAY(선충전 결제) + COLLECT(구매품 자동 집결) + DELIVER(캐리어·구매품 공항 배송) + MEMBERSHIP(할인 및 VIP 라운지).",
+        title: "03. 핵심 기능 4가지",
+        infoDesc: "PAY, COLLECT, DELIVER, MEMBERSHIP 4대 기능을 직관적인 아이콘과 함께 제시하여 한 장의 카드로 모든 번거로움이 해결됨을 전달합니다."
+      },
+      {
+        badge: "04 How To",
+        counter: "4 / 5",
+        subhead: "LUGGAGE PASS 이용 방법 5단계",
+        head: "맡기고 쇼핑하고\n공항에서 한 번에 받으세요",
+        desc: "①예약 및 패스발급 → ②캐리어 보관 → ③패스 태그 후 쇼핑 → ④구매품 자동 집결·배송 → ⑤공항 데스크 원스톱 수령!",
+        title: "04. 이용 방법 5단계 안내",
+        infoDesc: "낯선 한국 백화점에서도 누구나 즉시 따라할 수 있는 5단계 간편 동선을 단계별 실사 컷으로 명확하게 안내합니다."
+      },
+      {
+        badge: "05 CTA & Price",
+        counter: "5 / 5",
+        subhead: "여행 일정에 맞는 패스를 선택하세요",
+        head: "마지막 쇼핑까지 가볍게,\n지금 예약하기",
+        desc: "DAY PASS (₩20,000) / STAY PASS (₩35,000) / PREMIUM PASS (₩50,000). 지금 예약하고 두 손 자유로운 서울 쇼핑을 시작하세요!",
+        title: "05. 가격 안내 및 사전예약 전환(CTA)",
+        infoDesc: "패스 등급별 가격을 투명하게 비교 제시하고 모바일 사전예약 링크 및 QR코드로 전환율을 극대화하는 마무리 슬라이드입니다."
+      }
+    ];
+
+    let currentCardIndex = 0;
+
+    function renderCard(index) {
+      const data = cardData[index];
+      document.getElementById('card-badge').innerText = data.badge;
+      document.getElementById('card-counter').innerText = data.counter;
+      document.getElementById('card-subhead').innerText = data.subhead;
+      document.getElementById('card-head').innerHTML = data.head.replace('\n', '<br/>');
+      document.getElementById('card-desc').innerText = data.desc;
+      document.getElementById('card-info-title').innerText = data.title;
+      document.getElementById('card-info-desc').innerText = data.infoDesc;
+
+      // Update dots
+      const dotsContainer = document.getElementById('card-dots');
+      dotsContainer.innerHTML = '';
+      cardData.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all ${i === index ? 'bg-shinsegae-burgundy w-6' : 'bg-stone-300'}`;
+        dot.onclick = () => {
+          currentCardIndex = i;
+          renderCard(currentCardIndex);
+        };
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function nextCard() {
+      currentCardIndex = (currentCardIndex + 1) % cardData.length;
+      renderCard(currentCardIndex);
+    }
+
+    function prevCard() {
+      currentCardIndex = (currentCardIndex - 1 + cardData.length) % cardData.length;
+      renderCard(currentCardIndex);
+    }
+
+    // Initialize Card News
+    renderCard(0);
+
+    // Media Switcher Tabs
+    function switchMediaTab(tab) {
+      document.getElementById('content-cardnews').classList.add('hidden');
+      document.getElementById('content-shorts').classList.add('hidden');
+      document.getElementById('content-poster').classList.add('hidden');
+
+      document.getElementById('tab-cardnews').className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-stone-100 text-stone-600 hover:bg-stone-200 flex items-center gap-2";
+      document.getElementById('tab-shorts').className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-stone-100 text-stone-600 hover:bg-stone-200 flex items-center gap-2";
+      document.getElementById('tab-poster').className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-stone-100 text-stone-600 hover:bg-stone-200 flex items-center gap-2";
+
+      if (tab === 'cardnews') {
+        document.getElementById('content-cardnews').classList.remove('hidden');
+        document.getElementById('tab-cardnews').className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-shinsegae-green text-white shadow-sm flex items-center gap-2";
+      } else if (tab === 'shorts') {
+        document.getElementById('content-shorts').classList.remove('hidden');
+        document.getElementById('tab-shorts').className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-shinsegae-green text-white shadow-sm flex items-center gap-2";
+      } else if (tab === 'poster') {
+        document.getElementById('content-poster').classList.remove('hidden');
+        document.getElementById('tab-poster').className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-shinsegae-green text-white shadow-sm flex items-center gap-2";
+      }
+      lucide.createIcons();
+    }
+
+    // Modal Control
+    function openBookingModal(passName = 'STAY PASS', price = 35000) {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      
+      const select = document.getElementById('modal-pass-type');
+      select.value = passName;
+      document.getElementById('modal-price-display').innerText = `₩${price.toLocaleString()}`;
+      
+      document.getElementById('passForm').classList.remove('hidden');
+      document.getElementById('bookingSuccess').classList.add('hidden');
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.getElementById('modal-pass-type').addEventListener('change', function(e) {
+      const selectedOption = e.target.options[e.target.selectedIndex];
+      const price = parseInt(selectedOption.getAttribute('data-price') || 20000);
+      document.getElementById('modal-price-display').innerText = `₩${price.toLocaleString()}`;
+    });
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      document.getElementById('passForm').classList.add('hidden');
+      document.getElementById('bookingSuccess').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // Simple Language Switcher
+    function setLang(lang) {
+      document.getElementById('btn-kr').classList.remove('text-white', 'font-bold');
+      document.getElementById('btn-en').classList.remove('text-white', 'font-bold');
+      document.getElementById('btn-cn').classList.remove('text-white', 'font-bold');
+      
+      if(lang === 'KR') {
+        document.getElementById('btn-kr').classList.add('text-white', 'font-bold');
+      } else if(lang === 'EN') {
+        document.getElementById('btn-en').classList.add('text-white', 'font-bold');
+      } else {
+        document.getElementById('btn-cn').classList.add('text-white', 'font-bold');
+      }
+    }
+
+    // 9:16 Shorts Video Controller Logic
+    const shortsVideo = document.getElementById('shortsVideo');
+    const centerPlayBtn = document.getElementById('centerPlayBtn');
+    const togglePlayBtn = document.getElementById('togglePlayBtn');
+    const playIconSmall = document.getElementById('playIconSmall');
+    const toggleMuteBtn = document.getElementById('toggleMuteBtn');
+    const volumeIcon = document.getElementById('volumeIcon');
+
+    function toggleShortsPlay() {
+      if (!shortsVideo) return;
+      if (shortsVideo.paused) {
+        shortsVideo.play().then(() => {
+          centerPlayBtn.classList.add('opacity-0', 'pointer-events-none');
+          playIconSmall.setAttribute('data-lucide', 'pause');
+          togglePlayBtn.innerHTML = '<i data-lucide="pause" class="w-4 h-4"></i> 일시정지';
+          lucide.createIcons();
+        }).catch(err => {
+          console.log("Video playback requires user gesture or missing source:", err);
+        });
+      } else {
+        shortsVideo.pause();
+        centerPlayBtn.classList.remove('opacity-0', 'pointer-events-none');
+        playIconSmall.setAttribute('data-lucide', 'play');
+        togglePlayBtn.innerHTML = '<i data-lucide="play" class="w-4 h-4"></i> 재생';
+        lucide.createIcons();
+      }
+    }
+
+    if (centerPlayBtn) centerPlayBtn.addEventListener('click', toggleShortsPlay);
+    if (togglePlayBtn) togglePlayBtn.addEventListener('click', toggleShortsPlay);
+    if (shortsVideo) {
+      shortsVideo.addEventListener('click', toggleShortsPlay);
+      shortsVideo.addEventListener('play', () => {
+        centerPlayBtn.classList.add('opacity-0', 'pointer-events-none');
+      });
+      shortsVideo.addEventListener('pause', () => {
+        centerPlayBtn.classList.remove('opacity-0', 'pointer-events-none');
+      });
+    }
+
+    if (toggleMuteBtn && shortsVideo) {
+      toggleMuteBtn.addEventListener('click', () => {
+        shortsVideo.muted = !shortsVideo.muted;
+        if (shortsVideo.muted) {
+          toggleMuteBtn.innerHTML = '<i data-lucide="volume-x" class="w-4 h-4"></i> 음소거 됨';
+        } else {
+          toggleMuteBtn.innerHTML = '<i data-lucide="volume-2" class="w-4 h-4"></i> 음소거 해제';
+        }
+        lucide.createIcons();
+      });
+    }
+
+    function toggleShortsFullScreen() {
+      if (!shortsVideo) return;
+      if (shortsVideo.requestFullscreen) {
+        shortsVideo.requestFullscreen();
+      } else if (shortsVideo.webkitRequestFullscreen) {
+        shortsVideo.webkitRequestFullscreen();
+      } else if (shortsVideo.msRequestFullscreen) {
+        shortsVideo.msRequestFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
